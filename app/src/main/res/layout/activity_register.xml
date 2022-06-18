@@ -12,7 +12,6 @@
         style="@style/MyTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:text="Register"
         app:layout_constraintBottom_toTopOf="@+id/et_layout_account"
         app:layout_constraintLeft_toLeftOf="parent"

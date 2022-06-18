@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.login.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -12,11 +13,11 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         auth = Firebase.auth
 
         if(auth.currentUser != null) {
@@ -39,7 +40,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun initName(firebaseAuth: FirebaseAuth) {
         firebaseAuth.currentUser.let {
-            binding.tvHello.text = "Hello " + it?.email.toString()
+            binding.tvName.text = getName(it?.email.toString())
         }
+    }
+
+    private fun getName(email: String): String {
+        val name = StringBuffer()
+        for(e in email) {
+            if(e != '@') {
+                name.append(e)
+            } else {
+                return name.toString()
+            }
+        }
+        return name.toString()
+    }
+
+    override fun onBackPressed() {
+        Toast.makeText(this, "Press log out to exit", Toast.LENGTH_SHORT)
+            .show()
     }
 }
