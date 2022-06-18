@@ -4,49 +4,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:padding="20dp">
 
     <TextView
-        android:id="@+id/tv_login"
+        android:id="@+id/tv_register"
         style="@style/MyTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:text="Register"
-        app:layout_constraintBottom_toTopOf="@+id/et_account"
+        app:layout_constraintBottom_toTopOf="@+id/et_layout_account"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_account"
-        android:hint="Email Account"
-        style="@style/MyEditStyle"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_layout_account"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"/>
+        android:layout_height="wrap_content"
+        app:boxStrokeWidth="3dp"
+        app:boxStrokeColor="@color/black"
+        android:hint="Email">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_account"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_pwd"
-        android:hint="Password"
-        style="@style/MyEditStyle"
-        android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_account"
-        android:inputType="textPassword"
-        android:maxLines="1"/>
+<!--    <EditText-->
+<!--        android:id="@+id/et_account"-->
+<!--        android:hint="Email Account"-->
+<!--        style="@style/MyEditStyle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_login"-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:maxLines="1"/>-->
 
-    <EditText
-        android:id="@+id/et_confirm_pwd"
-        android:hint="Password"
-        style="@style/MyEditStyle"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_layout_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/et_layout_account"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_pwd"
-        android:inputType="textPassword"
-        android:maxLines="1"/>
+        android:layout_height="wrap_content"
+        app:boxStrokeWidth="3dp"
+        app:boxStrokeColor="@color/black"
+        android:hint="Password">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_pwd"-->
+<!--        android:hint="Password"-->
+<!--        style="@style/MyEditStyle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/et_account"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:maxLines="1"/>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_layout_confirm_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/et_layout_pwd"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeWidth="3dp"
+        app:boxStrokeColor="@color/black"
+        android:hint="Type again">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_confirm_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_confirm_pwd"-->
+<!--        android:hint="Confirm"-->
+<!--        style="@style/MyEditStyle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/et_pwd"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:maxLines="1"/>-->
 
     <Button
         android:id="@+id/btn_submit"
-        app:layout_constraintTop_toBottomOf="@+id/et_confirm_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/et_layout_confirm_pwd"
         style="@style/MyBtnStyle"
         android:clickable="true"
         android:focusable="true"

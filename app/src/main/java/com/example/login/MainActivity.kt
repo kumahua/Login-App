@@ -20,9 +20,7 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         if(auth.currentUser != null) {
-            auth.currentUser.let {
-                initName(auth)
-            }
+            initName(auth)
         }
 
         binding.btnLogout.setOnClickListener {

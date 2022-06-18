@@ -49,6 +49,7 @@ class PasswordActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Log.d(TAG, "User password updated.")
+                        Toast.makeText(this, "Successfully updated!!", Toast.LENGTH_SHORT).show()
                         auth.signOut()
                         startActivity(Intent(this,LoginActivity::class.java))
                     }

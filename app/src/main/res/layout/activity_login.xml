@@ -4,38 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/tv_login"
         style="@style/MyTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:text="Log in"
-        app:layout_constraintBottom_toTopOf="@+id/et_email"
+        app:layout_constraintBottom_toTopOf="@+id/et_layout_email"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_email"
-        style="@style/MyEditStyle"
-        android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"/>
+<!--    <EditText-->
+<!--        android:id="@+id/et_email"-->
+<!--        style="@style/MyEditStyle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_login"-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:hint="Email"-->
+<!--        android:maxLines="1"/>-->
 
-    <EditText
-        android:id="@+id/et_pwd"
-        style="@style/MyEditStyle"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_layout_email"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email"
-        android:inputType="textPassword"
-        android:maxLines="1"/>
+        android:layout_height="wrap_content"
+        app:boxStrokeWidth="3dp"
+        app:boxStrokeColor="@color/black"
+        android:hint="Email">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_pwd"-->
+<!--        style="@style/MyEditStyle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/et_layout_email"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:hint="Password"-->
+<!--        android:maxLines="1"/>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_layout_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/et_layout_email"
+        android:layout_marginTop="15dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeWidth="3dp"
+        app:boxStrokeColor="@color/black"
+        android:hint="Password">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_login"
-        app:layout_constraintTop_toBottomOf="@+id/et_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/et_layout_pwd"
         style="@style/MyBtnStyle"
         android:clickable="true"
         android:focusable="true"
@@ -51,9 +91,10 @@
         android:layout_height="wrap_content"
         android:text="sign up"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="25dp"
+        android:fontFamily="@font/ubuntu_light"
         app:layout_constraintTop_toBottomOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp" />
+        android:layout_marginTop="15dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

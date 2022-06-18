@@ -22,10 +22,10 @@ class LoginActivity : AppCompatActivity() {
             val email: String = binding.etEmail.text.toString().trim{it <= ' '}
             val pwd: String = binding.etPwd.text.toString().trim{it <= ' '}
 
-
-            if(validateForm()) {
+            if(validateData(email,pwd)) {
                 firebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener {
                     if(it.isSuccessful) {
+                        Toast.makeText(this, "Welcome !!", Toast.LENGTH_SHORT).show()
                         val intent =Intent(this,MainActivity::class.java)
                         startActivity(intent)
                     } else {
@@ -57,11 +57,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this,MainActivity::class.java))
         }
     }
-    private fun validateForm(): Boolean {
+    private fun validateData(email:String, password:String): Boolean {
         //Validate the email and password
         var valid = true
 
-        val email = binding.etEmail.text.toString()
         if (TextUtils.isEmpty(email)) {
             binding.etEmail.error = "Required"
             valid = false
@@ -69,7 +68,6 @@ class LoginActivity : AppCompatActivity() {
             binding.etEmail.error = null
         }
 
-        val password = binding.etPwd.text.toString()
         if (TextUtils.isEmpty(password)) {
             binding.etPwd.error = "Required"
             valid = false

@@ -26,22 +26,28 @@ class RegisterActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         binding.btnSubmit.setOnClickListener {
-            registerUser()
+            if(CheckInternet.isNetworkAvailable(this)){
+                registerUser()
+            } else {
+                Toast.makeText(this, "No Internet connection available", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 
     private fun registerUser() {
         val email = binding.etAccount.text.toString()
-        val password = binding.etPwd.text.toString()
+        val pass = binding.etPwd.text.toString()
         val confirmPass = binding.etConfirmPwd.text.toString()
 
-        if (validateForm()) {
-            if (password == confirmPass) {
-                auth.createUserWithEmailAndPassword(email, password)
+        if (validateData(email,pass,confirmPass)) {
+            if (pass == confirmPass) {
+                auth.createUserWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             // Sign in success, update the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success")
+                            Toast.makeText(this, "Successfully added!!", Toast.LENGTH_SHORT).show()
                             auth.signOut()
                             startActivity(Intent(this,LoginActivity::class.java))
 
@@ -57,36 +63,38 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateForm(): Boolean {
+    private fun validateData(email:String, pass:String, confirmPass:String): Boolean {
         //Validate the email and password
         var valid = true
 
-        val name = binding.etAccount.text.toString()
-        if (TextUtils.isEmpty(name)) {
+        if (TextUtils.isEmpty(email)) {
             binding.etAccount.error = "Required"
             valid = false
         } else {
             binding.etAccount.error = null
         }
 
-        val email = binding.etConfirmPwd.text.toString()
-        if (TextUtils.isEmpty(email)) {
-            binding.etConfirmPwd.error = "Required."
-            valid = false
-        } else {
-            binding.etConfirmPwd.error = null
-        }
 
-        val password = binding.etPwd.text.toString()
-        if (TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(pass)) {
             binding.etPwd.error = "Required"
             valid = false
-        } else if (password.length < 6) {
+        } else if (pass.length < 6) {
             binding.etPwd.error = "Password should be more than 6 characters"
             valid = false
         } else {
             binding.etPwd.error = null
         }
+
+        if (TextUtils.isEmpty(confirmPass)) {
+            binding.etConfirmPwd.error = "Required."
+            valid = false
+        } else if (confirmPass.length < 6) {
+            binding.etConfirmPwd.error = "Password should be more than 6 characters"
+            valid = false
+        } else {
+            binding.etConfirmPwd.error = null
+        }
+
         return valid
     }
 }
