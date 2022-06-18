@@ -37,15 +37,6 @@
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
-<!--    <EditText-->
-<!--        android:id="@+id/et_account"-->
-<!--        android:hint="Email Account"-->
-<!--        style="@style/MyEditStyle"-->
-<!--        android:layout_width="match_parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_login"-->
-<!--        android:inputType="textEmailAddress"-->
-<!--        android:maxLines="1"/>-->
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_layout_pwd"
         app:layout_constraintTop_toBottomOf="@+id/et_layout_account"
@@ -65,15 +56,6 @@
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
-<!--    <EditText-->
-<!--        android:id="@+id/et_pwd"-->
-<!--        android:hint="Password"-->
-<!--        style="@style/MyEditStyle"-->
-<!--        android:layout_width="match_parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/et_account"-->
-<!--        android:inputType="textPassword"-->
-<!--        android:maxLines="1"/>-->
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_layout_confirm_pwd"
         app:layout_constraintTop_toBottomOf="@+id/et_layout_pwd"
@@ -92,15 +74,6 @@
             android:inputType="textPassword"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
-
-<!--    <EditText-->
-<!--        android:id="@+id/et_confirm_pwd"-->
-<!--        android:hint="Confirm"-->
-<!--        style="@style/MyEditStyle"-->
-<!--        android:layout_width="match_parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/et_pwd"-->
-<!--        android:inputType="textPassword"-->
-<!--        android:maxLines="1"/>-->
 
     <Button
         android:id="@+id/btn_submit"

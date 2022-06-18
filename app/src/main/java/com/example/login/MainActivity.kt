@@ -26,17 +26,20 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogout.setOnClickListener {
             auth.signOut()
             startActivity(Intent(this,LoginActivity::class.java))
+            overridePendingTransition(androidx.appcompat.R.anim.abc_fade_in,
+                com.google.android.material.R.anim.abc_fade_out)
         }
-
 
         binding.btnChangePwd.setOnClickListener {
             startActivity(Intent(this,PasswordActivity::class.java))
+            overridePendingTransition(androidx.appcompat.R.anim.abc_fade_in,
+                com.google.android.material.R.anim.abc_fade_out)
         }
     }
 
     private fun initName(firebaseAuth: FirebaseAuth) {
         firebaseAuth.currentUser.let {
-            binding.tvHello.text = "Hello " + it?.email
+            binding.tvHello.text = "Hello " + it?.email.toString()
         }
     }
 }

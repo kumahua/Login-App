@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import android.widget.Toast
 import com.example.login.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -26,8 +27,11 @@ class LoginActivity : AppCompatActivity() {
                 firebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener {
                     if(it.isSuccessful) {
                         Toast.makeText(this, "Welcome !!", Toast.LENGTH_SHORT).show()
+
                         val intent =Intent(this,MainActivity::class.java)
                         startActivity(intent)
+                        overridePendingTransition(androidx.appcompat.R.anim.abc_fade_in,
+                            com.google.android.material.R.anim.abc_fade_out)
                     } else {
                         Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
                     }
@@ -47,6 +51,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding.tvSignUp.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+            overridePendingTransition(androidx.appcompat.R.anim.abc_fade_in,
+                com.google.android.material.R.anim.abc_fade_out)
         }
     }
 

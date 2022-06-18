@@ -48,10 +48,11 @@ class PasswordActivity : AppCompatActivity() {
             user!!.updatePassword(pwd)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Log.d(TAG, "User password updated.")
                         Toast.makeText(this, "Successfully updated!!", Toast.LENGTH_SHORT).show()
                         auth.signOut()
                         startActivity(Intent(this,LoginActivity::class.java))
+                        overridePendingTransition(androidx.appcompat.R.anim.abc_fade_in,
+                            com.google.android.material.R.anim.abc_fade_out)
                     }
                 }
         } else {

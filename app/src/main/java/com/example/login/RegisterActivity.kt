@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.login.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -42,6 +43,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if (validateData(email,pass,confirmPass)) {
             if (pass == confirmPass) {
+
                 auth.createUserWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
@@ -50,7 +52,8 @@ class RegisterActivity : AppCompatActivity() {
                             Toast.makeText(this, "Successfully added!!", Toast.LENGTH_SHORT).show()
                             auth.signOut()
                             startActivity(Intent(this,LoginActivity::class.java))
-
+                            overridePendingTransition(androidx.appcompat.R.anim.abc_fade_in,
+                                com.google.android.material.R.anim.abc_fade_out)
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(this, task.exception?.message,
