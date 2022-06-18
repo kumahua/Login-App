@@ -3,6 +3,7 @@ package com.example.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.Toast
 import com.example.login.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -21,20 +22,25 @@ class LoginActivity : AppCompatActivity() {
             val email: String = binding.etEmail.text.toString().trim{it <= ' '}
             val pwd: String = binding.etPwd.text.toString().trim{it <= ' '}
 
-            if(email.isEmpty()){
-                Toast.makeText(this,"Please Enter Email !!",Toast.LENGTH_SHORT).show()
-            }
-            if(email.isNotEmpty() && pwd.isNotEmpty()) {
+
+            if(validateForm()) {
                 firebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener {
                     if(it.isSuccessful) {
                         val intent =Intent(this,MainActivity::class.java)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
-                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
+                if(email.isEmpty() && pwd.isEmpty()) {
+                    Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
+                }
+                else if(email.isEmpty()){
+                    Toast.makeText(this,"Please Enter Email !!",Toast.LENGTH_SHORT).show()
+                } else if(pwd.isEmpty()){
+                    Toast.makeText(this,"Please Enter Password !!",Toast.LENGTH_SHORT).show()
+                }
             }
 
         }
@@ -51,17 +57,28 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this,MainActivity::class.java))
         }
     }
+    private fun validateForm(): Boolean {
+        //Validate the email and password
+        var valid = true
 
+        val email = binding.etEmail.text.toString()
+        if (TextUtils.isEmpty(email)) {
+            binding.etEmail.error = "Required"
+            valid = false
+        } else {
+            binding.etEmail.error = null
+        }
 
-//    private fun getName(email: String) : String? {
-//        val name: StringBuffer = StringBuffer()
-//        for(s in email) {
-//            if(s != '@') {
-//                name.append(s)
-//            } else {
-//                return name.toString()
-//            }
-//        }
-//        return null
-//    }
+        val password = binding.etPwd.text.toString()
+        if (TextUtils.isEmpty(password)) {
+            binding.etPwd.error = "Required"
+            valid = false
+        } else if (password.length < 6) {
+            binding.etPwd.error = "Password should be more than 6 characters"
+            valid = false
+        } else {
+            binding.etPwd.error = null
+        }
+        return valid
+    }
 }
