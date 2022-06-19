@@ -37,9 +37,9 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerUser() {
-        val email = binding.etAccount.text.toString()
-        val pass = binding.etPwd.text.toString()
-        val confirmPass = binding.etConfirmPwd.text.toString()
+        val email = binding.etAccount.text.toString().trim{it <= ' '}
+        val pass = binding.etPwd.text.toString().trim{it <= ' '}
+        val confirmPass = binding.etConfirmPwd.text.toString().trim{it <= ' '}
 
         if (validateData(email,pass,confirmPass)) {
             if (pass == confirmPass) {
@@ -76,7 +76,6 @@ class RegisterActivity : AppCompatActivity() {
         } else {
             binding.etAccount.error = null
         }
-
 
         if (TextUtils.isEmpty(pass)) {
             binding.etPwd.error = "Required"

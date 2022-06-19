@@ -5,6 +5,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -33,7 +34,7 @@ class PasswordActivity : AppCompatActivity() {
             val newPwd = binding.etNewPwd.text.toString()
             val pwdAgain = binding.etPwdAgain.text.toString()
 
-            if(pwdAgain == newPwd && pwdAgain.isNotEmpty() && newPwd.isNotEmpty()) {
+            if(pwdAgain == newPwd && !TextUtils.isEmpty(pwdAgain) && !TextUtils.isEmpty(newPwd)) {
                 setNewPwd(newPwd)
             } else {
                 Toast.makeText(this, "Check Password Again !!", Toast.LENGTH_SHORT).show()

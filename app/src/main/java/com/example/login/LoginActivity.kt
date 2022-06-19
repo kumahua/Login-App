@@ -36,17 +36,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
                     }
                 }
-            } else {
-                if(email.isEmpty() && pwd.isEmpty()) {
-                    Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
-                }
-                else if(email.isEmpty()){
-                    Toast.makeText(this,"Please Enter Email !!",Toast.LENGTH_SHORT).show()
-                } else if(pwd.isEmpty()){
-                    Toast.makeText(this,"Please Enter Password !!",Toast.LENGTH_SHORT).show()
-                }
             }
-
         }
 
         binding.tvSignUp.setOnClickListener {
@@ -69,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
 
         if (TextUtils.isEmpty(email)) {
             binding.etEmail.error = "Required"
+            Toast.makeText(this,"Please Enter Email !!",Toast.LENGTH_SHORT).show()
             valid = false
         } else {
             binding.etEmail.error = null
@@ -76,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
         if (TextUtils.isEmpty(password)) {
             binding.etPwd.error = "Required"
+            Toast.makeText(this,"Please Enter Password !!",Toast.LENGTH_SHORT).show()
             valid = false
         } else if (password.length < 6) {
             binding.etPwd.error = "Password should be more than 6 characters"
