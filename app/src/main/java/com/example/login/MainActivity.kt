@@ -40,20 +40,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initName(firebaseAuth: FirebaseAuth) {
         firebaseAuth.currentUser.let {
-            binding.tvName.text = getName(it?.email.toString())
+            val hello = "Hello, ${it?.email.toString()}"
+            binding.tvHello.text = hello
         }
-    }
-
-    private fun getName(email: String): String {
-        val name = StringBuffer()
-        for(e in email) {
-            if(e != '@') {
-                name.append(e)
-            } else {
-                return name.toString()
-            }
-        }
-        return name.toString()
     }
 
     override fun onBackPressed() {
