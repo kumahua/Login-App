@@ -54,6 +54,8 @@ class PasswordActivity : AppCompatActivity() {
                         startActivity(Intent(this,LoginActivity::class.java))
                         overridePendingTransition(androidx.appcompat.R.anim.abc_fade_in,
                             com.google.android.material.R.anim.abc_fade_out)
+                    } else {
+                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
                     }
                 }
         } else {
